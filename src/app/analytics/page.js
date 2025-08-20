@@ -11,9 +11,32 @@ import {
   ArrowUpIcon,
   ArrowDownIcon
 } from '@heroicons/react/24/outline';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 export default function Analytics() {
   const [selectedPeriod, setSelectedPeriod] = useState('month');
+
+  // Chart data for monthly trends
+  const monthlyData = [
+    { month: 'Jan', income: 9340, expenses: 6200, savings: 3140 },
+    { month: 'Feb', income: 9340, expenses: 6800, savings: 2540 },
+    { month: 'Mar', income: 9340, expenses: 5900, savings: 3440 },
+    { month: 'Apr', income: 9340, expenses: 6400, savings: 2940 },
+    { month: 'May', income: 9340, expenses: 5700, savings: 3640 },
+    { month: 'Jun', income: 9340, expenses: 6100, savings: 3240 },
+    { month: 'Jul', income: 9340, expenses: 6600, savings: 2740 },
+    { month: 'Aug', income: 9340, expenses: 5800, savings: 3540 }
+  ];
+
+  // Data for expense breakdown pie chart
+  const expenseData = [
+    { name: 'Food & Dining', value: 2800, color: '#f59e0b' },
+    { name: 'Transportation', value: 1200, color: '#3b82f6' },
+    { name: 'Shopping', value: 800, color: '#8b5cf6' },
+    { name: 'Entertainment', value: 600, color: '#10b981' },
+    { name: 'Bills & Utilities', value: 400, color: '#ef4444' },
+    { name: 'Others', value: 200, color: '#6b7280' }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white pb-16 lg:pb-0">
@@ -47,7 +70,7 @@ export default function Analytics() {
               <CurrencyDollarIcon className="w-8 h-8 lg:w-10 lg:h-10 text-green-400" />
               <ArrowUpIcon className="w-4 h-4 lg:w-5 lg:h-5 text-green-400" />
             </div>
-            <h3 className="text-lg lg:text-xl font-bold">₹4,200</h3>
+            <h3 className="text-lg lg:text-xl font-bold">₹9,340</h3>
             <p className="text-xs lg:text-sm text-gray-400">Total Income</p>
             <p className="text-xs lg:text-sm text-green-400 mt-1">+12% from last month</p>
           </div>
@@ -57,7 +80,7 @@ export default function Analytics() {
               <ArrowTrendingDownIcon className="w-8 h-8 lg:w-10 lg:h-10 text-red-400" />
               <ArrowDownIcon className="w-4 h-4 lg:w-5 lg:h-5 text-red-400" />
             </div>
-            <h3 className="text-lg lg:text-xl font-bold">₹2,800</h3>
+            <h3 className="text-lg lg:text-xl font-bold">₹5,800</h3>
             <p className="text-xs lg:text-sm text-gray-400">Total Expenses</p>
             <p className="text-xs lg:text-sm text-red-400 mt-1">+8% from last month</p>
           </div>
@@ -67,7 +90,7 @@ export default function Analytics() {
               <ArrowTrendingUpIcon className="w-8 h-8 lg:w-10 lg:h-10 text-blue-400" />
               <ArrowUpIcon className="w-4 h-4 lg:w-5 lg:h-5 text-blue-400" />
             </div>
-            <h3 className="text-lg lg:text-xl font-bold">₹1,400</h3>
+            <h3 className="text-lg lg:text-xl font-bold">₹3,540</h3>
             <p className="text-xs lg:text-sm text-gray-400">Net Savings</p>
             <p className="text-xs lg:text-sm text-blue-400 mt-1">+18% from last month</p>
           </div>
@@ -89,8 +112,56 @@ export default function Analytics() {
           {/* Monthly Trends - Takes 2 columns on desktop */}
           <div className="lg:col-span-2 bg-gray-800 p-4 lg:p-6 rounded-xl">
             <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">Monthly Trends</h3>
-            <div className="h-64 lg:h-80 bg-gray-700 rounded-lg flex items-center justify-center">
-              <p className="text-gray-400">Chart placeholder - Install chart library</p>
+            <div className="h-64 lg:h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={monthlyData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis 
+                    dataKey="month" 
+                    stroke="#9CA3AF"
+                    fontSize={12}
+                  />
+                  <YAxis 
+                    stroke="#9CA3AF"
+                    fontSize={12}
+                    tickFormatter={(value) => `₹${value/1000}k`}
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: '#1F2937', 
+                      border: '1px solid #374151',
+                      borderRadius: '8px',
+                      color: '#F9FAFB'
+                    }}
+                    formatter={(value) => [`₹${value.toLocaleString()}`, '']}
+                  />
+                  <Legend />
+                  <Line 
+                    type="monotone" 
+                    dataKey="income" 
+                    stroke="#10B981" 
+                    strokeWidth={3}
+                    name="Income"
+                    dot={{ fill: '#10B981', strokeWidth: 2, r: 4 }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="expenses" 
+                    stroke="#EF4444" 
+                    strokeWidth={3}
+                    name="Expenses"
+                    dot={{ fill: '#EF4444', strokeWidth: 2, r: 4 }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="savings" 
+                    stroke="#3B82F6" 
+                    strokeWidth={3}
+                    name="Savings"
+                    dot={{ fill: '#3B82F6', strokeWidth: 2, r: 4 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
             <div className="flex flex-wrap gap-4 mt-4">
               <div className="flex items-center space-x-2">
@@ -111,8 +182,35 @@ export default function Analytics() {
           {/* Expense Categories */}
           <div className="bg-gray-800 p-4 lg:p-6 rounded-xl">
             <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">Expense Breakdown</h3>
-            <div className="h-48 lg:h-64 bg-gray-700 rounded-lg flex items-center justify-center">
-              <p className="text-gray-400">Pie chart placeholder</p>
+            <div className="h-48 lg:h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={expenseData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    labelLine={false}
+                    fontSize={10}
+                  >
+                    {expenseData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: '#1F2937', 
+                      border: '1px solid #374151',
+                      borderRadius: '8px',
+                      color: '#F9FAFB'
+                    }}
+                    formatter={(value) => [`₹${value.toLocaleString()}`, 'Amount']}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
             <div className="space-y-2 mt-4">
               <div className="flex items-center justify-between text-sm">
