@@ -44,7 +44,7 @@ export default function AIAssistant() {
   const quickActions = [
     { icon: ChartBarIcon, label: 'Analyze Spending', color: 'bg-blue-500' },
     { icon: BanknotesIcon, label: 'Budget Review', color: 'bg-green-500' },
-    { icon: TrendingUpIcon, label: 'Investment Tips', color: 'bg-purple-500' },
+    { icon: ArrowTrendingUpIcon, label: 'Investment Tips', color: 'bg-purple-500' },
     { icon: LightBulbIcon, label: 'Save Money', color: 'bg-yellow-500' }
   ];
 
@@ -223,7 +223,7 @@ export default function AIAssistant() {
                     <span>Budget Optimization</span>
                   </div>
                   <div className="flex items-center space-x-3 text-sm">
-                    <TrendingUpIcon className="w-4 h-4 text-purple-400" />
+                    <ArrowTrendingUpIcon className="w-4 h-4 text-purple-400" />
                     <span>Investment Advice</span>
                   </div>
                   <div className="flex items-center space-x-3 text-sm">

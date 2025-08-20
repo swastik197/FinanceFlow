@@ -172,7 +172,7 @@ export default function ExpensesPage() {
                       </div>
                     </div>
                     <div className="text-xl font-bold text-red-400">
-                      -${expense.amount.toFixed(2)}
+                      -₹{expense.amount.toFixed(2)}
                     </div>
                   </div>
                 </div>
