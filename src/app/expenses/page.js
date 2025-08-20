@@ -104,7 +104,7 @@ export default function ExpensesPage() {
                   <select
                     value={newExpense.category}
                     onChange={(e) => setNewExpense({...newExpense, category: e.target.value})}
-                    className="bg-gray-700 rounded-lg px-3 py-2 text-white"
+                    className="w-32 bg-gray-700 rounded-lg px-3 py-2 text-white text-sm"
                     disabled={newExpense.useAI}
                   >
                     <option value="">Category</option>
