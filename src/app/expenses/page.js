@@ -195,7 +195,7 @@ export default function ExpensesPage() {
                         <h4 className="font-medium">{job.job}</h4>
                         <div className="flex items-center space-x-2 text-sm text-gray-400">
                           <ClockIcon className="w-4 h-4" />
-                          <span>{job.hours}h @ ${job.rate}/hr</span>
+                          <span>{job.hours}h @ ₹{job.rate}/hr</span>
                           <span className={`px-2 py-1 rounded-full text-xs ${
                             job.status === 'completed' ? 'bg-green-500' : 'bg-yellow-500'
                           }`}>
@@ -204,7 +204,7 @@ export default function ExpensesPage() {
                         </div>
                       </div>
                       <div className="text-lg font-bold text-green-400">
-                        +${(job.hours * job.rate).toFixed(2)}
+                        +₹{(job.hours * job.rate).toFixed(2)}
                       </div>
                     </div>
                   </div>
@@ -215,7 +215,7 @@ export default function ExpensesPage() {
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Today&apos;s Total:</span>
                   <span className="text-xl font-bold text-green-400">
-                    +${partTimeHours.reduce((sum, job) => sum + (job.hours * job.rate), 0).toFixed(2)}
+                    +₹{partTimeHours.reduce((sum, job) => sum + (job.hours * job.rate), 0).toFixed(2)}
                   </span>
                 </div>
               </div>
