@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   PlusIcon,
   ArrowLeftIcon,
@@ -11,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export default function ExpensesPage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('expenses');
   const [expenses, setExpenses] = useState([
     { id: 1, amount: 45.50, category: 'Food', description: 'Lunch at cafe', date: '2024-10-24', auto: true },
@@ -53,7 +55,9 @@ export default function ExpensesPage() {
       {/* Header */}
       <header className="bg-gray-800 p-4 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <ArrowLeftIcon className="w-6 h-6" />
+          <button onClick={() => router.back()} className="hover:bg-gray-700 p-1 rounded-lg transition-colors">
+            <ArrowLeftIcon className="w-6 h-6" />
+          </button>
           <h1 className="text-xl font-bold">Smart Expense Tracking</h1>
         </div>
         <PlusIcon className="w-6 h-6" />

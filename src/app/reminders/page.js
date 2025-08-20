@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   ArrowLeftIcon,
   PlusIcon,
@@ -13,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export default function RemindersPage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('upcoming');
   
   const reminders = [
@@ -133,7 +135,9 @@ export default function RemindersPage() {
       {/* Header */}
       <header className="bg-gray-800 p-4 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <ArrowLeftIcon className="w-6 h-6" />
+          <button onClick={() => router.back()} className="hover:bg-gray-700 p-1 rounded-lg transition-colors">
+            <ArrowLeftIcon className="w-6 h-6" />
+          </button>
           <h1 className="text-xl font-bold">Payment Reminders</h1>
         </div>
         <PlusIcon className="w-6 h-6" />

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   ArrowLeftIcon,
   PaperAirplaneIcon,
@@ -12,6 +13,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export default function ChatPage() {
+  const router = useRouter();
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -114,7 +116,9 @@ export default function ChatPage() {
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
       {/* Header */}
       <header className="bg-gray-800 p-4 flex items-center space-x-3">
-        <ArrowLeftIcon className="w-6 h-6" />
+        <button onClick={() => router.back()} className="hover:bg-gray-700 p-1 rounded-lg transition-colors">
+          <ArrowLeftIcon className="w-6 h-6" />
+        </button>
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full flex items-center justify-center">
             <span className="text-white font-bold">AI</span>
