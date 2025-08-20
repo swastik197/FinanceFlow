@@ -21,7 +21,7 @@ export default function BottomNavigation() {
     { href: '/analytics', icon: ChartBarIcon, label: 'Analytics' },
     { href: '/expenses', icon: CurrencyDollarIcon, label: 'Expenses' },
     { href: '/goals', icon: TrophyIcon, label: 'Goals' },
-    { href: '/chat', icon: ChatBubbleBottomCenterTextIcon, label: 'AI Chat' },
+    { href: '/ai-assistant', icon: ChatBubbleBottomCenterTextIcon, label: 'AI Chat' },
   ];
 
   return (

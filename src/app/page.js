@@ -97,7 +97,7 @@ export default function Home() {
             <div className="lg:grid lg:grid-cols-12 lg:gap-8 space-y-6 lg:space-y-0">
               
               {/* Left Column - Main Cards */}
-              <div className="lg:col-span-7 space-y-6">
+              <div className="lg:col-span-8 space-y-6">
                 
                 {/* Income and Wallet Card */}
                 <div className="bg-gray-800 rounded-2xl p-6 lg:p-8">
@@ -253,7 +253,7 @@ export default function Home() {
               </div>
 
               {/* Right Sidebar */}
-              <div className="lg:col-span-3 space-y-6">
+              <div className="lg:col-span-4 space-y-6">
                 
                 {/* Saving Goals */}
                 <div className="bg-gray-800 rounded-2xl p-4 lg:p-6">
